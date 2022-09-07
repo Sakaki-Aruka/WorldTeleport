@@ -45,6 +45,8 @@ public class HomePoint implements CommandExecutor, TabCompleter {
                     String key = player.getName();
                     Location value = player.getLocation();
                     homePoint.put(key,value);
+                }else{
+                    player.sendMessage("§c400 Bad Request(HomePoint)");
                 }
             }
         }
@@ -54,7 +56,6 @@ public class HomePoint implements CommandExecutor, TabCompleter {
 
     @Override
     public List<String> onTabComplete(CommandSender sender,Command command,String alias,String[] args){
-        //write here
         if(args.length==1){
             return Arrays.asList("teleport","remove","set");
         }

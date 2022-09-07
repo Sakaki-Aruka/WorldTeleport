@@ -19,6 +19,7 @@ public class SettingsLoad {
     }
 
     public void loadConfig(){
+
         for(World world : worldList){
             String worldName = world.getName();
             Location defaultSpawn = world.getSpawnLocation();

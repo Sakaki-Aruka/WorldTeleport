@@ -15,6 +15,7 @@ public final class WorldTeleport extends JavaPlugin {
         this.load();
         saveDefaultConfig();
         getCommand("home").setExecutor(new HomePoint());
+        getCommand("wtp").setExecutor(new Wtp());
     }
 
     @Override
