@@ -1,0 +1,6 @@
+name: WorldTeleport
+version: '${project.version}'
+main: worldteleport.worldteleport.WorldTeleport
+api-version: 1.19
+authors: [ SakakiAruka ]
+description: provide teleport system between worlds.
