@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 import java.util.Arrays;
 import java.util.List;
 
-import static worldteleport.worldteleport.SettingsLoad.homePoint;
+import static worldteleport.worldteleport.SettingsLoad.homePointAlready;
 
 public class HomePoint implements CommandExecutor, TabCompleter {
     @Override
@@ -25,26 +25,26 @@ public class HomePoint implements CommandExecutor, TabCompleter {
         if(args.length==1){
             if(args[0].equals("teleport")){
                 //teleport
-                if(homePoint.containsKey(player.getName())){
-                    Location location = homePoint.get(player.getName());
+                if(homePointAlready.containsKey(player.getName())){
+                    Location location = homePointAlready.get(player.getName());
                     player.teleport(location);
                 }else{
                     player.sendMessage("§c404 Not Found(HomePoint)");
                 }
             }else if(args[0].equals("remove")){
                 //remove
-                if(homePoint.containsKey(player.getName())){
-                    homePoint.remove(player.getName());
+                if(homePointAlready.containsKey(player.getName())){
+                    homePointAlready.remove(player.getName());
                 }else{
                     player.sendMessage("§c404 Not Found(HomePoint)");
                 }
 
             }else if(args[0].equals("set")){
                 //set
-                if(!(homePoint.containsKey(player.getName()))){
+                if(!(homePointAlready.containsKey(player.getName()))){
                     String key = player.getName();
                     Location value = player.getLocation();
-                    homePoint.put(key,value);
+                    homePointAlready.put(key,value);
                 }else{
                     player.sendMessage("§c400 Bad Request(HomePoint)");
                 }
