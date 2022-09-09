@@ -28,6 +28,7 @@ public class HomePoint implements CommandExecutor, TabCompleter {
                     player.sendMessage("§a200 OK (HomePoint)");
                 }else{
                     player.sendMessage("§c404 Not Found (HomePoint)");
+                    return false;
                 }
 
             }else if(args[0].equals("set")){
@@ -45,7 +46,7 @@ public class HomePoint implements CommandExecutor, TabCompleter {
             }
         }
 
-        return false;
+        return true;
     }
 
     @Override
@@ -53,7 +54,6 @@ public class HomePoint implements CommandExecutor, TabCompleter {
         if(args.length==1){
             return Arrays.asList("teleport","set");
         }
-
         return null;
     }
 }
