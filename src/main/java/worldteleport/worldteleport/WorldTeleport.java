@@ -1,11 +1,9 @@
 package worldteleport.worldteleport;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,9 +11,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import javax.annotation.OverridingMethodsMustInvokeSuper;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 import static worldteleport.worldteleport.SettingsLoad.*;
@@ -51,10 +48,6 @@ public final class WorldTeleport extends JavaPlugin implements Listener, Command
 
     public void dataWrite() {
         //the data that had this program, write to config.yml
-        //debug
-        Bukkit.broadcastMessage("Now reloading (WorldTeleport)");
-        Bukkit.broadcastMessage("homePoint List:" + homePoint);
-        Bukkit.broadcastMessage("playerNames:" + homePoint.keySet());
 
         ArrayList<String> playerList = new ArrayList<>();
 

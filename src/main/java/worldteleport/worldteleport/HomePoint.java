@@ -1,8 +1,5 @@
 package worldteleport.worldteleport;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -26,21 +23,17 @@ public class HomePoint implements CommandExecutor, TabCompleter {
         if(args.length==1){
             if(args[0].equals("teleport")){
                 //teleport
-
-                //debug
                 if(homePoint.containsKey(player.getName())){
                     player.teleport(homePoint.get(player.getName()));
-                    player.sendMessage("Teleported(location):"+homePoint.get(player.getName()));
+                    player.sendMessage("§a200 OK (HomePoint)");
                 }else{
-                    player.sendMessage("teleport error");
+                    player.sendMessage("§c404 Not Found (HomePoint)");
                 }
 
             }else if(args[0].equals("set")){
                 //set
                 homePoint.put(player.getName(),player.getLocation());
-
-                //debug
-                player.sendMessage("Location(written):"+player.getLocation());
+                player.sendMessage("§a200 OK (HomePoint)");
 
             }else if(args[0].equals("debug")){
                 //debug
@@ -58,7 +51,7 @@ public class HomePoint implements CommandExecutor, TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender,Command command,String alias,String[] args){
         if(args.length==1){
-            return Arrays.asList("teleport","remove","set");
+            return Arrays.asList("teleport","set");
         }
 
         return null;
