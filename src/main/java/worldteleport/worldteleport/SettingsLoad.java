@@ -11,9 +11,7 @@ public class SettingsLoad {
     public static List<World> worldList = Bukkit.getWorlds();
     public static ArrayList<String> worldNameList = new ArrayList<>();
     public static Map<String,Location> spawnPoint = new HashMap<>();
-    public static HashMap<String,Location> homePointAlready = new HashMap<>();
-    public static HashMap<String,Location> homePointYet = new HashMap<>();
-
+    public static HashMap<String,Location> homePoint = new HashMap<>();
 
     public void fc(FileConfiguration fileConfiguration){
         FC = fileConfiguration;
@@ -34,10 +32,16 @@ public class SettingsLoad {
         }
         Bukkit.getServer().getLogger().info("[WorldTeleport]:WorldsLoad complete.");
 
-        if(FC.getInt("players")==0){
-            // no players home point data
-        }else{
-            // write here
+
+        String[] namesList;
+        namesList = FC.getString("playerNameList").split(",");
+
+        ArrayList<String> nameArr = new ArrayList<>(Arrays.asList(namesList));
+        for (String nameLoop : nameArr){
+
+            homePoint.put(nameLoop,FC.getLocation(nameLoop+".home"));
+
         }
+
     }
 }

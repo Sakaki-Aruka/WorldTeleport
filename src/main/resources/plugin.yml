@@ -9,3 +9,5 @@ commands:
     permission: worldteleport.home
   wtp:
     permission: worldteleport.wtp
+  homepointreload:
+    permission: worldteleport.settingsreload
