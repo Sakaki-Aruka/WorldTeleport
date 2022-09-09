@@ -2,19 +2,24 @@ package worldteleport.worldteleport;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import javax.sound.midi.SysexMessage;
+import javax.annotation.OverridingMethodsMustInvokeSuper;
 import java.util.ArrayList;
-import java.util.Set;
+import java.util.HashMap;
 
 import static worldteleport.worldteleport.SettingsLoad.*;
 
-public final class WorldTeleport extends JavaPlugin implements Listener {
+public final class WorldTeleport extends JavaPlugin implements Listener, CommandExecutor {
 
     public void load(){
         FileConfiguration fileConfiguration = getConfig();
@@ -27,6 +32,7 @@ public final class WorldTeleport extends JavaPlugin implements Listener {
         saveDefaultConfig();
         getCommand("home").setExecutor(new HomePoint());
         getCommand("wtp").setExecutor(new Wtp());
+        getCommand("homepointreload");
         getServer().getPluginManager().registerEvents(this,this);
     }
 
@@ -42,15 +48,26 @@ public final class WorldTeleport extends JavaPlugin implements Listener {
         }
     }
 
-    public void dataWrite(){
+    public void dataWrite() {
         //the data that had this program, write to config.yml
         //debug
         Bukkit.broadcastMessage("Now reloading (WorldTeleport)");
-        Bukkit.broadcastMessage("homePoint List:"+homePointAlready);
-        Bukkit.broadcastMessage("playerNames:"+homePointAlready.keySet());
+        Bukkit.broadcastMessage("homePointAlready List:" + homePointAlready);
+        Bukkit.broadcastMessage("playerNamesAlready:" + homePointAlready.keySet());
+        Bukkit.broadcastMessage("yet:" + homePointYet);
 
-        ArrayList<String> alreadyList = new ArrayList<>(homePointAlready.keySet());
-        ArrayList<String> yetList = new ArrayList<>(homePointYet.keySet());
+    }
 
+    @Override
+    public boolean onCommand(CommandSender sender, Command command,String label,String[] args){
+        if(sender instanceof Player){
+            if(!(sender.isOp())){
+                return false;
+            }
+        }
+        // save and load
+        this.dataWrite();
+        this.load();
+        return true;
     }
 }

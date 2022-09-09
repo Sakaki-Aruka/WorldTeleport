@@ -14,7 +14,6 @@ public class SettingsLoad {
     public static HashMap<String,Location> homePointAlready = new HashMap<>();
     public static HashMap<String,Location> homePointYet = new HashMap<>();
 
-
     public void fc(FileConfiguration fileConfiguration){
         FC = fileConfiguration;
         this.loadConfig();
@@ -38,6 +37,18 @@ public class SettingsLoad {
             // no players home point data
         }else{
             // write here
+            String[] namesList = FC.getString("playerNameList").split(",");
+            ArrayList<String> nameArr = new ArrayList<>(Arrays.asList(namesList));
+            for (String nameLoop : nameArr){
+                String name = FC.getString(nameLoop+".name");
+                double x = FC.getDouble(nameLoop+".home.x");
+                double y = FC.getDouble(nameLoop+".home.y");
+                double z = FC.getDouble(nameLoop+".home.z");
+                World world = Bukkit.getWorld(nameLoop+".home.world");
+                Location location = new Location(world,x,y,z);
+                homePointAlready.put(name,location);
+
+            }
         }
     }
 }
