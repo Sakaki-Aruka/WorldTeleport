@@ -1,6 +1,13 @@
 # WorldTeleport
 provide world teleport  
-  
+
+# Permissions  
+## worldteleport.home  
+To use "/home" commands.  
+## worldteleport.wtp  
+To use "/wtp" commands.  
+## worldteleport.op  
+To use "/home debug","/homepointreload" commands.  
 # Commands  
 ## /home  
 ### /home set  
@@ -13,3 +20,8 @@ Use this command and teleport to your home point.
 ### /wtp (x)  
 Write world name in instead (x), you can teleport the selected world.  
 (Jump to worlds default spawn point.)  
+# Debug command.(Can only use administrators.)
+## /homepointreload  
+Use this command and will reload this plugins config file.(for debug/deprecation)  
+## /home debug  
+Display debug infomation.
