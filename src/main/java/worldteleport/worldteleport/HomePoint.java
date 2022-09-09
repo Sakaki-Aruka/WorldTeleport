@@ -12,8 +12,7 @@ import org.bukkit.entity.Player;
 import java.util.Arrays;
 import java.util.List;
 
-import static worldteleport.worldteleport.SettingsLoad.homePointAlready;
-import static worldteleport.worldteleport.SettingsLoad.homePointYet;
+import static worldteleport.worldteleport.SettingsLoad.*;
 
 public class HomePoint implements CommandExecutor, TabCompleter {
     @Override
@@ -27,46 +26,29 @@ public class HomePoint implements CommandExecutor, TabCompleter {
         if(args.length==1){
             if(args[0].equals("teleport")){
                 //teleport
-                if(homePointAlready.containsKey(player.getName())){
-                    //already
-                    Location location = homePointAlready.get(player.getName());
-                    player.teleport(location);
+
+                //debug
+                if(homePoint.containsKey(player.getName())){
+                    player.teleport(homePoint.get(player.getName()));
+                    player.sendMessage("Teleported(location):"+homePoint.get(player.getName()));
                 }else{
-                    if(homePointYet.containsKey(player.getName())){
-                        //yet
-                        Location location = homePointYet.get(player.getName());
-                        player.teleport(location);
-                    }
-                    player.sendMessage("§c404 Not Found(HomePoint)");
-                }
-            }else if(args[0].equals("remove")){
-                //remove
-                if(homePointAlready.containsKey(player.getName())){
-                    homePointAlready.remove(player.getName());
-                    homePointAlready.put(player.getName(),null);
-                }else{
-                    if(homePointYet.containsKey(player.getName())){
-                        //yet players point remove
-                        homePointYet.remove(player.getName());
-                    }
-                    player.sendMessage("§c404 Not Found(HomePoint)");
+                    player.sendMessage("teleport error");
                 }
 
             }else if(args[0].equals("set")){
                 //set
-                if(homePointAlready.containsKey(player.getName()) && homePointAlready.get(player.getName())==null){
-                    String key = player.getName();
-                    Location value = player.getLocation();
-                    homePointAlready.put(key,value);
-                }else if(!(homePointAlready.containsKey(player.getName()))){
-                    // no exists key
-                    String key = player.getName();
-                    Location value = player.getLocation();
-                    homePointYet.put(key,value);
-                }else{
-                    // exists key in the hashmap(homePointYet)
-                    player.sendMessage("§c400 Bad Request(HomePoint 1)");
+                homePoint.put(player.getName(),player.getLocation());
+
+                //debug
+                player.sendMessage("Location(written):"+player.getLocation());
+
+            }else if(args[0].equals("debug")){
+                //debug
+                if(!(sender.isOp())){
+                    return false;
                 }
+                sender.sendMessage("homePoint:"+homePoint);
+                sender.sendMessage("playerNameList:"+FC.getString("playerNameList"));
             }
         }
 

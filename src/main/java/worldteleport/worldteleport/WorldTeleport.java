@@ -16,6 +16,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import javax.annotation.OverridingMethodsMustInvokeSuper;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import static worldteleport.worldteleport.SettingsLoad.*;
 
@@ -52,9 +53,22 @@ public final class WorldTeleport extends JavaPlugin implements Listener, Command
         //the data that had this program, write to config.yml
         //debug
         Bukkit.broadcastMessage("Now reloading (WorldTeleport)");
-        Bukkit.broadcastMessage("homePointAlready List:" + homePointAlready);
-        Bukkit.broadcastMessage("playerNamesAlready:" + homePointAlready.keySet());
-        Bukkit.broadcastMessage("yet:" + homePointYet);
+        Bukkit.broadcastMessage("homePoint List:" + homePoint);
+        Bukkit.broadcastMessage("playerNames:" + homePoint.keySet());
+
+        ArrayList<String> playerList = new ArrayList<>();
+
+        for(Map.Entry<String,Location> entry : homePoint.entrySet()){
+            if(entry.getValue() != null) {
+                FC.set(entry.getKey() + ".home", entry.getValue());
+                saveConfig();
+                playerList.add(entry.getKey());
+            }
+        }
+
+        String playerListString = String.join(",",playerList);
+        FC.set("playerNameList",playerListString);
+        saveConfig();
 
     }
 
