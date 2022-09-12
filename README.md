@@ -2,10 +2,8 @@
 provide world teleport  
 
 # Permissions  
-## worldteleport.home  
-To use "/home" commands.  
-## worldteleport.wtp  
-To use "/wtp" commands.  
+## worldteleport.default 
+To use "/home" commands and "/wtp" commands.    
 ## worldteleport.op  
 To use "/home debug","/homepointreload" commands.  
 # Commands  
