@@ -6,8 +6,14 @@ authors: [ SakakiAruka ]
 description: provide teleport system between worlds.
 commands:
   home:
-    permission: worldteleport.home
+    permission: worldteleport.default
   wtp:
-    permission: worldteleport.wtp
+    permission: worldteleport.default
   homepointreload:
-    permission: worldteleport.settingsreload
+    permission: worldteleport.op
+
+permissions:
+  worldteleport.default:
+    default: true
+  worldteleport.op:
+    default: op
