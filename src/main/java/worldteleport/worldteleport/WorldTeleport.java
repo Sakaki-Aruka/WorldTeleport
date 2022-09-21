@@ -74,6 +74,10 @@ public final class WorldTeleport extends JavaPlugin implements Listener, Command
         }
         // save and load
         this.dataWrite();
+        worldList.clear();
+        worldNameList.clear();
+        spawnPoint.clear();
+        homePoint.clear();
         this.load();
         return true;
     }

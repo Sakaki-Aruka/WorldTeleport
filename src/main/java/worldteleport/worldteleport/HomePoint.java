@@ -42,7 +42,6 @@ public class HomePoint implements CommandExecutor, TabCompleter {
                     return false;
                 }
                 sender.sendMessage("homePoint:"+homePoint);
-                sender.sendMessage("playerNameList:"+FC.getString("playerNameList"));
             }
         }
 
