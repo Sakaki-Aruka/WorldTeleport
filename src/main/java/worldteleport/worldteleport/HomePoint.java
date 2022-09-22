@@ -6,6 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -51,8 +52,22 @@ public class HomePoint implements CommandExecutor, TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender,Command command,String alias,String[] args){
         if(args.length==1){
-            return Arrays.asList("teleport","set");
+            return tabCompleterSupport(new ArrayList<>(Arrays.asList("teleport","set")),args[0]);
         }
         return null;
+    }
+
+    public ArrayList<String> tabCompleterSupport(ArrayList<String> array,String input){
+        ArrayList<String> settings = new ArrayList<>();
+        for(String loop : array){
+            if(loop.contains(input)){
+                settings.add(loop);
+            }
+        }
+        if(settings.size() != 0){
+            return settings;
+        }else{
+            return null;
+        }
     }
 }

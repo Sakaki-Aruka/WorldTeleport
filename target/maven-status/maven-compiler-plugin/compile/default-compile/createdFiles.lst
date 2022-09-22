@@ -1,4 +1,7 @@
-worldteleport\worldteleport\HomePoint.class
-worldteleport\worldteleport\SettingsLoad.class
+worldteleport\worldteleport\WorldUnload.class
 worldteleport\worldteleport\Wtp.class
 worldteleport\worldteleport\WorldTeleport.class
+worldteleport\worldteleport\HomePoint.class
+worldteleport\worldteleport\Events.class
+worldteleport\worldteleport\SettingsLoad.class
+worldteleport\worldteleport\WorldsLoad.class

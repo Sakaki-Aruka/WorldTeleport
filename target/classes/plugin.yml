@@ -11,6 +11,8 @@ commands:
     permission: worldteleport.default
   homepointreload:
     permission: worldteleport.op
+  worldteleportworldreload:
+    permission: worldteleport.op
 
 permissions:
   worldteleport.default:

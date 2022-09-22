@@ -30,8 +30,10 @@ public final class WorldTeleport extends JavaPlugin implements Listener, Command
         saveDefaultConfig();
         getCommand("home").setExecutor(new HomePoint());
         getCommand("wtp").setExecutor(new Wtp());
-        getCommand("homepointreload");
+        getCommand("homepointreload").setExecutor(this);
+        getCommand("worldteleportworldreload").setExecutor(new WorldsLoad());
         getServer().getPluginManager().registerEvents(this,this);
+        getServer().getPluginManager().registerEvents(new Events(),this);
     }
 
     @Override
@@ -74,7 +76,6 @@ public final class WorldTeleport extends JavaPlugin implements Listener, Command
         }
         // save and load
         this.dataWrite();
-        worldList.clear();
         worldNameList.clear();
         spawnPoint.clear();
         homePoint.clear();

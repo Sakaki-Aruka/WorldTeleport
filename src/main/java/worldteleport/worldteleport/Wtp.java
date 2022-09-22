@@ -34,7 +34,7 @@ public class Wtp implements CommandExecutor, TabCompleter {
 
     public List<String> onTabComplete(CommandSender sender,Command command,String alias,String[] args){
         if(args.length==1){
-            return worldNameList;
+            return new HomePoint().tabCompleterSupport(worldNameList,args[0]);
         }
 
         return null;
